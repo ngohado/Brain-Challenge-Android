@@ -1,0 +1,65 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId rootProject.ext.applicationID
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testCompile 'junit:junit:4.12'
+
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVers"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVers"
+    compile "com.android.support.constraint:constraint-layout:$rootProject.ext.constraintLayoutVers"
+
+    //butter knife
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVers"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVers"
+
+    //rxjava and rxandroid
+    compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxReactiveVers"
+    compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxReactiveVers"
+
+    //network
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVers"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVers"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVers"
+    compile "com.google.code.gson:gson:$rootProject.gsonVers"
+
+    //logger
+    compile "com.jakewharton.timber:timber:$rootProject.ext.timberVers"
+
+    //dagger
+    compile "com.google.dagger:dagger:$rootProject.ext.daggerVers"
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVers"
+    provided 'javax.annotation:jsr250-api:1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
+}

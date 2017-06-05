@@ -1,0 +1,54 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext.kotlin_version = '1.1.2-4'
+
+    repositories {
+        maven { url 'https://maven.google.com' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.0-alpha1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://maven.google.com' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    applicationID = "com.hado.brainchallenge"
+
+    //sdk & tools
+    minSdkVersion = 15
+    compileSdkVersion = 25
+    buildToolsVersion = "25.0.2"
+    targetSdkVersion = 25
+    versionCode = 1
+    versionName = "1.0"
+
+    //support library
+    supportLibraryVers = "25.3.1"
+    constraintLayoutVers = "1.0.2"
+
+    butterknifeVers = "8.6.0"
+
+    rxReactiveVers = "2.0.1"
+
+    retrofitVers = "2.3.0"
+    gsonVers = "2.8.0"
+
+    timberVers = "4.5.1"
+
+    daggerVers = "2.9"
+}

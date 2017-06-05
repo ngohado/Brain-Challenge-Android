@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Brain Challenge</string>
+    <string name="login_sign_in">Sign in</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_sign_in_social">Sign in with social networks</string>
+    <string name="login_logo_application">Logo application</string>
+    <string name="login_or">OR</string>
+</resources>
