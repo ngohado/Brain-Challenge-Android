@@ -8,47 +8,47 @@ import com.google.gson.annotations.SerializedName;
 
 public class ApiResponse<D> {
 
-    @SerializedName("status")
-    private int status;
+  @SerializedName("status")
+  private int status;
 
-    @SerializedName("errorCode")
-    private int errorCode;
+  @SerializedName("errorCode")
+  private int errorCode;
 
-    @SerializedName("errorMessage")
-    private String errorMessage;
+  @SerializedName("errorMessage")
+  private String errorMessage;
 
-    @SerializedName("data")
-    private D data;
+  @SerializedName("data")
+  private D data;
 
-    public int getStatus() {
-        return status;
-    }
+  public int getStatus() {
+    return status;
+  }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
+  public void setStatus(int status) {
+    this.status = status;
+  }
 
-    public int getErrorCode() {
-        return errorCode;
-    }
+  public int getErrorCode() {
+    return errorCode;
+  }
 
-    public void setErrorCode(int errorCode) {
-        this.errorCode = errorCode;
-    }
+  public void setErrorCode(int errorCode) {
+    this.errorCode = errorCode;
+  }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
+  public String getErrorMessage() {
+    return errorMessage;
+  }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
-    }
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
+  }
 
-    public D getData() {
-        return data;
-    }
+  public D getData() {
+    return data;
+  }
 
-    public void setData(D data) {
-        this.data = data;
-    }
+  public void setData(D data) {
+    this.data = data;
+  }
 }

@@ -8,92 +8,92 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class UserInfo {
-    @SerializedName("username")
-    private String username;
+  @SerializedName("username")
+  private String username;
 
-    @SerializedName("password")
-    @Expose(serialize = false)
-    private String password;
+  @SerializedName("password")
+  @Expose(serialize = false)
+  private String password;
 
-    @SerializedName("email")
-    private String email;
+  @SerializedName("email")
+  private String email;
 
-    @SerializedName("phone")
-    private String phone;
+  @SerializedName("phone")
+  private String phone;
 
-    @SerializedName("avatar")
-    private String avatar;
+  @SerializedName("avatar")
+  private String avatar;
 
-    @SerializedName("dob")
-    private long dateOfBirth;
+  @SerializedName("dob")
+  private long dateOfBirth;
 
-    @SerializedName("score")
-    private int score;
+  @SerializedName("score")
+  private int score;
 
-    @SerializedName("gender")
-    private int gender;
+  @SerializedName("gender")
+  private int gender;
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public String getEmail() {
-        return email;
-    }
+  public String getEmail() {
+    return email;
+  }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+  public void setEmail(String email) {
+    this.email = email;
+  }
 
-    public String getPhone() {
-        return phone;
-    }
+  public String getPhone() {
+    return phone;
+  }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
 
-    public String getAvatar() {
-        return avatar;
-    }
+  public String getAvatar() {
+    return avatar;
+  }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
+  public void setAvatar(String avatar) {
+    this.avatar = avatar;
+  }
 
-    public long getDateOfBirth() {
-        return dateOfBirth;
-    }
+  public long getDateOfBirth() {
+    return dateOfBirth;
+  }
 
-    public void setDateOfBirth(long dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
+  public void setDateOfBirth(long dateOfBirth) {
+    this.dateOfBirth = dateOfBirth;
+  }
 
-    public int getScore() {
-        return score;
-    }
+  public int getScore() {
+    return score;
+  }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
+  public void setScore(int score) {
+    this.score = score;
+  }
 
-    public int getGender() {
-        return gender;
-    }
+  public int getGender() {
+    return gender;
+  }
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
+  public void setGender(int gender) {
+    this.gender = gender;
+  }
 }

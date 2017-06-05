@@ -9,8 +9,13 @@ import com.hado.brainchallenge.di.ApplicationContext;
 import com.hado.brainchallenge.di.BaseUrl;
 import com.hado.brainchallenge.network.ApiClient;
 
+import javax.inject.Singleton;
+
 import dagger.Module;
 import dagger.Provides;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by Hado on 5/23/17.
@@ -19,33 +24,38 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
 
-    private MyApplication mApplication;
+  private MyApplication mApplication;
 
-    public ApplicationModule(MyApplication mApplication) {
-        this.mApplication = mApplication;
-    }
+  public ApplicationModule(MyApplication mApplication) {
+    this.mApplication = mApplication;
+  }
 
-    @Provides
-    @ApplicationContext
-    public Context provideApplicationContext() {
-        return mApplication;
-    }
+  @Provides
+  @ApplicationContext
+  public Context provideApplicationContext() {
+    return mApplication;
+  }
 
-    @Provides
-    @BaseUrl
-    public String provideBaseUrl() {
-        return AppConstant.BASE_URL;
-    }
+  @Provides
+  @Singleton
+  @BaseUrl
+  public String provideBaseUrl() {
+    return AppConstant.BASE_URL;
+  }
 
-    @Provides
-    public ApiClient provideApiClient() {
-        return mApplication.getApiClient();
-    }
+  @Provides
+  @Singleton
+  public ApiClient provideApiClient(@BaseUrl String baseUrl) {
+    return new Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build().create(ApiClient.class);
+  }
 
-    @Provides
-    public Application provideApplication() {
-        return mApplication;
-    }
-
+  @Provides
+  public Application provideApplication() {
+    return mApplication;
+  }
 
 }

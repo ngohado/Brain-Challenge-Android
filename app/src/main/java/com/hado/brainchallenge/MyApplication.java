@@ -5,10 +5,6 @@ import android.app.Application;
 import com.hado.brainchallenge.di.component.ApplicationComponent;
 import com.hado.brainchallenge.di.component.DaggerApplicationComponent;
 import com.hado.brainchallenge.di.module.ApplicationModule;
-import com.hado.brainchallenge.network.ApiClient;
-import com.hado.brainchallenge.network.RetrofitClient;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -18,30 +14,24 @@ import timber.log.Timber;
 
 public class MyApplication extends Application {
 
-    private ApplicationComponent applicationComponent;
+  private ApplicationComponent applicationComponent;
 
-    @Inject
-    RetrofitClient retrofitClient;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        if (BuildConfig.DEBUG) {
-            Timber.plant(new Timber.DebugTree());
-        }
-
-        applicationComponent = DaggerApplicationComponent.builder()
-                .applicationModule(new ApplicationModule(this))
-                .build();
-
-        applicationComponent.inject(this);
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    if (BuildConfig.DEBUG) {
+      Timber.plant(new Timber.DebugTree());
     }
 
-    public ApiClient getApiClient() {
-        return retrofitClient.getApiClient();
-    }
+    applicationComponent = DaggerApplicationComponent.builder()
+        .applicationModule(new ApplicationModule(this))
+        .build();
 
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
-    }
+    applicationComponent.inject(this);
+  }
+
+
+  public ApplicationComponent getApplicationComponent() {
+    return applicationComponent;
+  }
 }

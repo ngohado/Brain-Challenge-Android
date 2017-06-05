@@ -19,12 +19,12 @@ import dagger.Component;
 @Singleton
 @Component(modules = ApplicationModule.class)
 public interface ApplicationComponent {
-    void inject(MyApplication application);
+  void inject(MyApplication application);
 
-    @ApplicationContext
-    Context getApplicationContext();
+  @ApplicationContext
+  Context getApplicationContext();
 
-    Application getApplication();
+  Application getApplication();
 
-    ApiClient getApiClient();
+  ApiClient getApiClient();
 }

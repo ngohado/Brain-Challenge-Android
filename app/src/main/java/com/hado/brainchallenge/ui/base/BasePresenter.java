@@ -8,23 +8,23 @@ import com.hado.brainchallenge.network.ApiClient;
 
 public abstract class BasePresenter<V extends BaseView> {
 
-    protected ApiClient apiClient;
+  protected ApiClient apiClient;
 
-    public BasePresenter(ApiClient apiClient) {
-        this.apiClient = apiClient;
-    }
+  public BasePresenter(ApiClient apiClient) {
+    this.apiClient = apiClient;
+  }
 
-    private V baseView;
+  private V baseView;
 
-    public void onAttach(V view) {
-        this.baseView = view;
-    }
+  public void onAttach(V view) {
+    this.baseView = view;
+  }
 
-    public void onDetach() {
-        baseView = null;
-    }
+  public void onDetach() {
+    baseView = null;
+  }
 
-    public V getView() {
-        return baseView;
-    }
+  public V getView() {
+    return baseView;
+  }
 }

@@ -5,11 +5,11 @@ package com.hado.brainchallenge.ui.base;
  */
 
 public interface BaseView {
-    void showLoading();
+  void showLoading();
 
-    void hideLoading();
+  void hideLoading();
 
-    void showError(String message);
+  void showError(String message);
 
-    void hideKeyboard();
+  void hideKeyboard();
 }

@@ -14,7 +14,7 @@ import retrofit2.http.POST;
 
 public interface ApiClient {
 
-    @POST("login")
-    @FormUrlEncoded
-    Single<ApiResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
+  @POST("login")
+  @FormUrlEncoded
+  Single<ApiResponse<UserInfo>> login(@Field("username") String username, @Field("password") String password);
 }

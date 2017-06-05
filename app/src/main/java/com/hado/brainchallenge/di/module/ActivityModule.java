@@ -17,26 +17,26 @@ import dagger.Provides;
 
 @Module
 public class ActivityModule {
-    private Activity mActivity;
+  private Activity mActivity;
 
-    public ActivityModule(Activity mActivity) {
-        this.mActivity = mActivity;
-    }
+  public ActivityModule(Activity mActivity) {
+    this.mActivity = mActivity;
+  }
 
-    @Provides
-    @ActivityContext
-    public Context provideActivityContext() {
-        return mActivity;
-    }
+  @Provides
+  @ActivityContext
+  public Context provideActivityContext() {
+    return mActivity;
+  }
 
-    @Provides
-    public Activity provideActivity() {
-        return mActivity;
-    }
+  @Provides
+  public Activity provideActivity() {
+    return mActivity;
+  }
 
-    @Provides
-    public BasePresenter<LoginView> provideLoginPresenter(LoginPresenter presenter) {
-        return presenter;
-    }
+  @Provides
+  public BasePresenter<LoginView> provideLoginPresenter(LoginPresenter presenter) {
+    return presenter;
+  }
 
 }

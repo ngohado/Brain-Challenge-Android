@@ -7,7 +7,7 @@ import com.hado.brainchallenge.ui.base.BaseView;
  */
 
 public interface LoginView extends BaseView {
-    void shakeUsername();
+  void shakeUsername();
 
-    void shakePassword();
+  void shakePassword();
 }

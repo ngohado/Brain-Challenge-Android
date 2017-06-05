@@ -21,39 +21,39 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Singleton
 public class RetrofitClient {
 
-    private Retrofit mRetrofit;
+  private Retrofit mRetrofit;
 
-    private ApiClient mApiClient;
+  private ApiClient mApiClient;
 
-    @Inject
-    public RetrofitClient() {
-        mRetrofit = new Retrofit.Builder()
-                .baseUrl(AppConstant.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        mApiClient = mRetrofit.create(ApiClient.class);
+  @Inject
+  public RetrofitClient() {
+    mRetrofit = new Retrofit.Builder()
+        .baseUrl(AppConstant.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .build();
+    mApiClient = mRetrofit.create(ApiClient.class);
+  }
+
+  public ApiClient getApiClient() {
+    if (mApiClient == null) {
+      mRetrofit.create(ApiClient.class);
     }
+    return mApiClient;
+  }
 
-    public ApiClient getApiClient() {
-        if (mApiClient == null) {
-            mRetrofit.create(ApiClient.class);
-        }
-        return mApiClient;
+  public static MultipartBody.Part prepareFilePart(String path) {
+    if (path == null) {
+      return null;
     }
+    File file = new File(path);
 
-    public static MultipartBody.Part prepareFilePart(String path) {
-        if (path == null) {
-            return null;
-        }
-        File file = new File(path);
-
-        if (!file.exists()) {
-            return null;
-        }
-        RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
-
-        return MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+    if (!file.exists()) {
+      return null;
     }
+    RequestBody requestFile = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+
+    return MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+  }
 
 }

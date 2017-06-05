@@ -24,72 +24,72 @@ import butterknife.Unbinder;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView {
 
-    private Unbinder mUnBinder;
+  private Unbinder mUnBinder;
 
-    private ActivityComponent activityComponent;
+  private ActivityComponent activityComponent;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(getLayoutID());
-        activityComponent = DaggerActivityComponent.builder()
-                .activityModule(new ActivityModule(this))
-                .applicationComponent(((MyApplication) getApplication()).getApplicationComponent())
-                .build();
-        injecting();
-        mUnBinder = ButterKnife.bind(this);
-        initView();
-        initData();
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(getLayoutID());
+    activityComponent = DaggerActivityComponent.builder()
+        .activityModule(new ActivityModule(this))
+        .applicationComponent(((MyApplication) getApplication()).getApplicationComponent())
+        .build();
+    injecting();
+    mUnBinder = ButterKnife.bind(this);
+    initView();
+    initData();
+  }
+
+  public abstract void injecting();
+
+  public abstract void initView();
+
+  public abstract void initData();
+
+  public abstract int getLayoutID();
+
+  public ActivityComponent getActivityComponent() {
+    return activityComponent;
+  }
+
+  @Override
+  protected void onDestroy() {
+    if (mUnBinder != null) {
+      mUnBinder.unbind();
     }
+    super.onDestroy();
+  }
 
-    public abstract void injecting();
+  @Override
+  public void showLoading() {
 
-    public abstract void initView();
+  }
 
-    public abstract void initData();
+  @Override
+  public void hideLoading() {
 
-    public abstract int getLayoutID();
+  }
 
-    public ActivityComponent getActivityComponent() {
-        return activityComponent;
+  @Override
+  public void showError(String message) {
+    Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
+        message, Snackbar.LENGTH_SHORT);
+    View sbView = snackbar.getView();
+    TextView textView = (TextView) sbView
+        .findViewById(android.support.design.R.id.snackbar_text);
+    textView.setTextColor(ContextCompat.getColor(this, android.R.color.white));
+    snackbar.show();
+  }
+
+  @Override
+  public void hideKeyboard() {
+    View view = this.getCurrentFocus();
+    if (view != null) {
+      InputMethodManager imm = (InputMethodManager)
+          getSystemService(Context.INPUT_METHOD_SERVICE);
+      imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-
-    @Override
-    protected void onDestroy() {
-        if (mUnBinder != null) {
-            mUnBinder.unbind();
-        }
-        super.onDestroy();
-    }
-
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void hideLoading() {
-
-    }
-
-    @Override
-    public void showError(String message) {
-        Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content),
-                message, Snackbar.LENGTH_SHORT);
-        View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView
-                .findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(this, android.R.color.white));
-        snackbar.show();
-    }
-
-    @Override
-    public void hideKeyboard() {
-        View view = this.getCurrentFocus();
-        if (view != null) {
-            InputMethodManager imm = (InputMethodManager)
-                    getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-    }
+  }
 }
